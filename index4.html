@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Enter id and get details</h1>
+
+<p id="demo"> </p><br><br>
+<input type ="text" id="inpu">
+<button  onclick= "get()">click</button>
+
+<p id="demo2"></p>
+
+<script>
+  function get() {
+  var t=document.getElementById("inpu").value;
+	var h4=document.getElementById("demo2");
+var xhr = new XMLHttpRequest();
+ xhr.open("GET", "https://reqres.in/api/users?id="+t, true);
+xhr.onload = function(){
+	if (this.readyState == 4 && this.status == 200) {
+          console.log(xhr.responseText);
+ var resdata=JSON.parse(this.response)
+   
+    	var temp1 = document.createElement('p');
+         temp1.textContent = ("id is---->"+resdata.data.id+" "+"email is ---->"+ resdata.data.email+" firstname<------>"+ resdata.data.first_name+" last name----->"+resdata.data.last_name);
+          h4.append(temp1);
+         
+
+
+}
+}
+
+xhr.send();
+}
+</script>
+ 
+</body>
+</html>
+	
