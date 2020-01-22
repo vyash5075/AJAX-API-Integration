@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>The XMLHttpRequest Object</h1>
+<h2>whole jason is given below</h2>	
+<p id="demo"> </p><br><br>
+<h2>Now we print the email ids from jason</h2>
+<h4 id="demo2"></h4>
+
+<script>
+	var h4=document.getElementById("demo2");
+var xhr = new XMLHttpRequest();
+ xhr.open("GET", "https://reqres.in/api/users?page=2", true);
+xhr.onload = function(){
+	if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML = this.response;
+    console.log(xhr.responseText);
+
+
+ var resdata=JSON.parse(this.response)
+    resdata.data.forEach(d=> {
+    	var temp1 = document.createElement('p');
+         // var temp2 = document.createElement('p');
+          temp1.textContent = ("id is---->"+d.id+" "+"email is ---->"+ d.email);
+          //temp2.textContent=d.email;
+          h4.append(temp1);
+         // h4.append(temp2);
+
+});
+}
+}
+xhr.send();
+</script>
+ 
+</body>
+</html>
+	
